@@ -13,3 +13,9 @@ functions/functionMetadata.json
 .idea/*
 
 .DS_Store
+
+# files genereated during local development using "npm run dev"
+src/templates/
+src/registry/*/config.tsx
+.template-manifest.json
+stream.config.ts
