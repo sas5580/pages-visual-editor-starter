@@ -56,6 +56,7 @@ type YextBarSocialDiningHeroSectionProps = {
   primaryCta: ComprehensiveCTAValue;
   secondaryCta: ComprehensiveCTAValue;
   tertiaryCta: ComprehensiveCTAValue;
+  quaternaryCta: ComprehensiveCTAValue;
 };
 
 const themeColorToCss = (selectedColor?: string): string | undefined => {
@@ -445,6 +446,10 @@ const YextBarSocialDiningHeroSectionFields: YextFields<YextBarSocialDiningHeroSe
       label: "Tertiary CTA",
       type: "comprehensiveCTA",
     },
+    quaternaryCta: {
+      label: "Quaternary CTA",
+      type: "comprehensiveCTA",
+    },
   };
 
 const YextBarSocialDiningHeroSectionComponent: PuckComponent<
@@ -637,6 +642,10 @@ const YextBarSocialDiningHeroSectionComponent: PuckComponent<
                     value={props.tertiaryCta as Partial<ComprehensiveCTAValue>}
                     eventName="tertiaryCta"
                   />
+                  <ComprehensiveCTA
+                    value={props.quaternaryCta as Partial<ComprehensiveCTAValue>}
+                    eventName="quaternaryCta"
+                  />
                 </div>
               </div>
             </div>
@@ -779,6 +788,14 @@ export const YextBarSocialDiningHeroSection: YextComponentConfig<YextBarSocialDi
           contrastingColor: "[#171219]",
         },
         "secondary",
+      ),
+      quaternaryCta: createHeroCta(
+        "EAT FOOD NOW",
+        {
+          selectedColor: "palette-secondary",
+          contrastingColor: "palette-secondary-contrast",
+        },
+        "primary",
       ),
     },
     render: (props) => <YextBarSocialDiningHeroSectionComponent {...props} />,
