@@ -19,6 +19,7 @@ import {
   toPuckFields,
 } from "@yext/visual-editor";
 import { AnalyticsScopeProvider } from "@yext/pages-components";
+import { createCta } from "../../../shared/cta";
 import type {
   AddressType,
   DayOfWeekNames,
@@ -186,65 +187,11 @@ const formatPhoneNumber = (
     : parsedPhoneNumber.number.national;
 };
 
-const createOutlineCta = (label: string): ComprehensiveCTAValue => ({
-  data: {
-    actionType: "link",
-    cta: {
-      field: "",
-      constantValue: {
-        ctaType: "textAndLink",
-        label: {
-          defaultValue: label,
-          hasLocalizedValue: "true",
-        },
-        link: {
-          defaultValue: "#",
-          hasLocalizedValue: "true",
-        },
-        linkType: "URL",
-      },
-      constantValueEnabled: true,
-      selectedType: "textAndLink",
-    },
-    openInNewTab: false,
-    buttonText: {
-      defaultValue: label,
-      hasLocalizedValue: "true",
-    },
-    customId: "",
-    customClass: "",
-    dataAttributes: [],
-    ariaLabel: {
-      defaultValue: label,
-      hasLocalizedValue: "true",
-    },
-  },
-  styles: {
+const createOutlineCta = (label: string) =>
+  createCta(label, {
+    color: { selectedColor: "[#171219]", contrastingColor: "white" },
     variant: "secondary",
-    color: {
-      selectedColor: "[#171219]",
-      contrastingColor: "white",
-    },
-    button: {
-      fontFamily: "default",
-      fontSize: "default",
-      fontWeight: "default",
-      fontStyle: "default",
-      textTransform: "default",
-      letterSpacing: "default",
-      borderRadius: "default",
-    },
-    link: {
-      fontFamily: "default",
-      fontSize: "default",
-      fontWeight: "default",
-      fontStyle: "default",
-      textTransform: "default",
-      letterSpacing: "default",
-      includeCaret: "default",
-    },
-  },
-});
+  });
 
 const textStyle = (
   styles: StyledTextValue,

@@ -3,6 +3,7 @@ import * as React from "react";
 import { type ReactNode } from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider } from "@yext/pages-components";
+import { createCta } from "../../../shared/cta";
 import {
   ComprehensiveCTA,
   EntityField,
@@ -359,66 +360,8 @@ const formatPhoneNumber = (
     : parsedPhoneNumber.number.national;
 };
 
-const createTextLinkCta = (
-  label: string,
-  link: string,
-  color: ThemeColor,
-): ComprehensiveCTAValue => ({
-  data: {
-    actionType: "link",
-    cta: {
-      field: "",
-      constantValue: {
-        ctaType: "textAndLink",
-        label: {
-          defaultValue: label,
-          hasLocalizedValue: "true",
-        },
-        link: {
-          defaultValue: link,
-          hasLocalizedValue: "true",
-        },
-        linkType: "URL",
-      },
-      constantValueEnabled: true,
-      selectedType: "textAndLink",
-    },
-    openInNewTab: false,
-    buttonText: {
-      defaultValue: label,
-      hasLocalizedValue: "true",
-    },
-    customId: "",
-    customClass: "",
-    dataAttributes: [],
-    ariaLabel: {
-      defaultValue: label,
-      hasLocalizedValue: "true",
-    },
-  },
-  styles: {
-    variant: "link",
-    color,
-    button: {
-      fontFamily: "default",
-      fontSize: "default",
-      fontWeight: "default",
-      fontStyle: "default",
-      textTransform: "default",
-      letterSpacing: "default",
-      borderRadius: "default",
-    },
-    link: {
-      fontFamily: "default",
-      fontSize: "default",
-      fontWeight: "default",
-      fontStyle: "default",
-      textTransform: "default",
-      letterSpacing: "default",
-      includeCaret: "default",
-    },
-  },
-});
+const createTextLinkCta = (label: string, link: string, color: ThemeColor) =>
+  createCta(label, { color, link, variant: "link" });
 
 const footerLinkColor: ThemeColor = {
   selectedColor: "[#FFFFFF]",

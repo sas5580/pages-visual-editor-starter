@@ -1,6 +1,7 @@
 import type { PuckComponent } from "@puckeditor/core";
 import * as React from "react";
 import { AnalyticsScopeProvider } from "@yext/pages-components";
+import { createCta } from "../../../shared/cta";
 import {
   ComprehensiveCTA,
   EntityField,
@@ -56,7 +57,6 @@ type YextBarSocialDiningHeroSectionProps = {
   primaryCta: ComprehensiveCTAValue;
   secondaryCta: ComprehensiveCTAValue;
   tertiaryCta: ComprehensiveCTAValue;
-  quaternaryCta: ComprehensiveCTAValue;
 };
 
 const themeColorToCss = (selectedColor?: string): string | undefined => {
@@ -274,67 +274,6 @@ const textStyle = (
     styles.textTransform === "default" ? undefined : styles.textTransform,
 });
 
-const createHeroCta = (
-  label: string,
-  color: ThemeColor,
-  variant: "primary" | "secondary",
-): ComprehensiveCTAValue => ({
-  data: {
-    actionType: "link",
-    cta: {
-      field: "",
-      constantValue: {
-        ctaType: "textAndLink",
-        label: {
-          defaultValue: label,
-          hasLocalizedValue: "true",
-        },
-        link: {
-          defaultValue: "#",
-          hasLocalizedValue: "true",
-        },
-        linkType: "URL",
-      },
-      constantValueEnabled: true,
-      selectedType: "textAndLink",
-    },
-    openInNewTab: false,
-    buttonText: {
-      defaultValue: label,
-      hasLocalizedValue: "true",
-    },
-    customId: "",
-    customClass: "",
-    dataAttributes: [],
-    ariaLabel: {
-      defaultValue: label,
-      hasLocalizedValue: "true",
-    },
-  },
-  styles: {
-    variant,
-    color,
-    button: {
-      fontFamily: "default",
-      fontSize: "default",
-      fontWeight: "default",
-      fontStyle: "default",
-      textTransform: "default",
-      letterSpacing: "default",
-      borderRadius: "default",
-    },
-    link: {
-      fontFamily: "default",
-      fontSize: "default",
-      fontWeight: "default",
-      fontStyle: "default",
-      textTransform: "default",
-      letterSpacing: "default",
-      includeCaret: "default",
-    },
-  },
-});
-
 const YextBarSocialDiningHeroSectionFields: YextFields<YextBarSocialDiningHeroSectionProps> =
   {
     section: {
@@ -444,10 +383,6 @@ const YextBarSocialDiningHeroSectionFields: YextFields<YextBarSocialDiningHeroSe
     },
     tertiaryCta: {
       label: "Tertiary CTA",
-      type: "comprehensiveCTA",
-    },
-    quaternaryCta: {
-      label: "Quaternary CTA",
       type: "comprehensiveCTA",
     },
   };
@@ -642,10 +577,6 @@ const YextBarSocialDiningHeroSectionComponent: PuckComponent<
                     value={props.tertiaryCta as Partial<ComprehensiveCTAValue>}
                     eventName="tertiaryCta"
                   />
-                  <ComprehensiveCTA
-                    value={props.quaternaryCta as Partial<ComprehensiveCTAValue>}
-                    eventName="quaternaryCta"
-                  />
                 </div>
               </div>
             </div>
@@ -765,38 +696,27 @@ export const YextBarSocialDiningHeroSection: YextComponentConfig<YextBarSocialDi
           borderRadius: "default",
         },
       },
-      primaryCta: createHeroCta(
-        "Call Ahead",
-        {
+      primaryCta: createCta("Call Ahead", {
+        color: {
           selectedColor: "palette-secondary",
           contrastingColor: "palette-secondary-contrast",
         },
-        "primary",
-      ),
-      secondaryCta: createHeroCta(
-        "Order Takeout",
-        {
+        variant: "primary",
+      }),
+      secondaryCta: createCta("Order Takeout", {
+        color: {
           selectedColor: "palette-secondary",
           contrastingColor: "palette-secondary-contrast",
         },
-        "primary",
-      ),
-      tertiaryCta: createHeroCta(
-        "View Menu",
-        {
+        variant: "primary",
+      }),
+      tertiaryCta: createCta("View Menu", {
+        color: {
           selectedColor: "[#FFFFFF]",
           contrastingColor: "[#171219]",
         },
-        "secondary",
-      ),
-      quaternaryCta: createHeroCta(
-        "EAT FOOD NOW",
-        {
-          selectedColor: "palette-secondary",
-          contrastingColor: "palette-secondary-contrast",
-        },
-        "primary",
-      ),
+        variant: "secondary",
+      }),
     },
     render: (props) => <YextBarSocialDiningHeroSectionComponent {...props} />,
   };

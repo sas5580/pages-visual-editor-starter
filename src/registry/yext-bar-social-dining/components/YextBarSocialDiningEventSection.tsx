@@ -1,6 +1,7 @@
 import type { PuckComponent } from "@puckeditor/core";
 import * as React from "react";
 import { AnalyticsScopeProvider } from "@yext/pages-components";
+import { createCta } from "../../../shared/cta";
 import {
   ComprehensiveCTA,
   EntityField,
@@ -606,65 +607,13 @@ export const YextBarSocialDiningEventSection: YextComponentConfig<YextBarSocialD
           borderRadius: "default",
         },
       },
-      cta: {
-        data: {
-          actionType: "link",
-          cta: {
-            field: "",
-            constantValue: {
-              ctaType: "textAndLink",
-              label: {
-                defaultValue: "Plan Your Event",
-                hasLocalizedValue: "true",
-              },
-              link: {
-                defaultValue: "#",
-                hasLocalizedValue: "true",
-              },
-              linkType: "URL",
-            },
-            constantValueEnabled: true,
-            selectedType: "textAndLink",
-          },
-          openInNewTab: false,
-          buttonText: {
-            defaultValue: "Plan Your Event",
-            hasLocalizedValue: "true",
-          },
-          customId: "",
-          customClass: "",
-          dataAttributes: [],
-          ariaLabel: {
-            defaultValue: "Plan Your Event",
-            hasLocalizedValue: "true",
-          },
+      cta: createCta("Plan Your Event", {
+        color: {
+          selectedColor: "palette-tertiary",
+          contrastingColor: "palette-tertiary-contrast",
         },
-        styles: {
-          variant: "primary",
-          color: {
-            selectedColor: "palette-tertiary",
-            contrastingColor: "palette-tertiary-contrast",
-          },
-          button: {
-            fontFamily: "default",
-            fontSize: "default",
-            fontWeight: "default",
-            fontStyle: "default",
-            textTransform: "default",
-            letterSpacing: "default",
-            borderRadius: "default",
-          },
-          link: {
-            fontFamily: "default",
-            fontSize: "default",
-            fontWeight: "default",
-            fontStyle: "default",
-            textTransform: "default",
-            letterSpacing: "default",
-            includeCaret: "default",
-          },
-        },
-      } as ComprehensiveCTAValue,
+        variant: "primary",
+      }),
     },
     render: (props) => <YextBarSocialDiningEventSectionComponent {...props} />,
   };

@@ -1,6 +1,7 @@
 import type { PuckComponent } from "@puckeditor/core";
 import * as React from "react";
 import { AnalyticsScopeProvider } from "@yext/pages-components";
+import { createCta } from "../../../shared/cta";
 import {
   ComprehensiveCTA,
   EntityField,
@@ -51,65 +52,11 @@ type MenuItemProps = {
   cta: ComprehensiveCTAValue;
 };
 
-const createMenuCardCta = (label: string): ComprehensiveCTAValue => ({
-  data: {
-    actionType: "link",
-    cta: {
-      field: "",
-      constantValue: {
-        ctaType: "textAndLink",
-        label: {
-          defaultValue: label,
-          hasLocalizedValue: "true",
-        },
-        link: {
-          defaultValue: "#",
-          hasLocalizedValue: "true",
-        },
-        linkType: "URL",
-      },
-      constantValueEnabled: true,
-      selectedType: "textAndLink",
-    },
-    openInNewTab: false,
-    buttonText: {
-      defaultValue: label,
-      hasLocalizedValue: "true",
-    },
-    customId: "",
-    customClass: "",
-    dataAttributes: [],
-    ariaLabel: {
-      defaultValue: label,
-      hasLocalizedValue: "true",
-    },
-  },
-  styles: {
+const createMenuCardCta = (label: string) =>
+  createCta(label, {
+    color: { selectedColor: "[#171219]", contrastingColor: "white" },
     variant: "secondary",
-    color: {
-      selectedColor: "[#171219]",
-      contrastingColor: "white",
-    },
-    button: {
-      fontFamily: "default",
-      fontSize: "default",
-      fontWeight: "default",
-      fontStyle: "default",
-      textTransform: "default",
-      letterSpacing: "default",
-      borderRadius: "default",
-    },
-    link: {
-      fontFamily: "default",
-      fontSize: "default",
-      fontWeight: "default",
-      fontStyle: "default",
-      textTransform: "default",
-      letterSpacing: "default",
-      includeCaret: "default",
-    },
-  },
-});
+  });
 
 const menuItemsSource = createItemSource<MenuItemProps>({
   label: "Menu Items",
