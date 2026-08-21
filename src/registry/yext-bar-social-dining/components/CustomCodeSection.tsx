@@ -1,1 +1,1 @@
-export { CustomCodeSection } from "@yext/visual-editor";
+export { CustomCodeSection } from "../../../shared/components/CustomCodeSection";
