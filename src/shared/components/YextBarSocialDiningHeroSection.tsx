@@ -54,9 +54,7 @@ type YextBarSocialDiningHeroSectionProps = {
   heading: StyledTextProps;
   body: StyledRtfProps;
   heroImage: HeroImageProps;
-  primaryCta: ComprehensiveCTAValue;
-  secondaryCta: ComprehensiveCTAValue;
-  tertiaryCta: ComprehensiveCTAValue;
+  ctas: Array<{ cta: ComprehensiveCTAValue }>;
 };
 
 const themeColorToCss = (selectedColor?: string): string | undefined => {
@@ -373,17 +371,24 @@ const YextBarSocialDiningHeroSectionFields: YextFields<YextBarSocialDiningHeroSe
         },
       },
     },
-    primaryCta: {
-      label: "Primary CTA",
-      type: "comprehensiveCTA",
-    },
-    secondaryCta: {
-      label: "Secondary CTA",
-      type: "comprehensiveCTA",
-    },
-    tertiaryCta: {
-      label: "Tertiary CTA",
-      type: "comprehensiveCTA",
+    ctas: {
+      label: "CTAs",
+      type: "array",
+      arrayFields: {
+        cta: {
+          label: "CTA",
+          type: "comprehensiveCTA",
+        },
+      },
+      defaultItemProps: {
+        cta: createCta("CTA", {
+          color: {
+            selectedColor: "palette-secondary",
+            contrastingColor: "palette-secondary-contrast",
+          },
+          variant: "primary",
+        }),
+      },
     },
   };
 
@@ -565,18 +570,13 @@ const YextBarSocialDiningHeroSectionComponent: PuckComponent<
                     width: "100%",
                   }}
                 >
-                  <ComprehensiveCTA
-                    value={props.primaryCta as Partial<ComprehensiveCTAValue>}
-                    eventName="primaryCta"
-                  />
-                  <ComprehensiveCTA
-                    value={props.secondaryCta as Partial<ComprehensiveCTAValue>}
-                    eventName="secondaryCta"
-                  />
-                  <ComprehensiveCTA
-                    value={props.tertiaryCta as Partial<ComprehensiveCTAValue>}
-                    eventName="tertiaryCta"
-                  />
+                  {props.ctas.map((item, index) => (
+                    <ComprehensiveCTA
+                      key={`cta-${index}`}
+                      value={item.cta as Partial<ComprehensiveCTAValue>}
+                      eventName={`cta-${index}`}
+                    />
+                  ))}
                 </div>
               </div>
             </div>
@@ -696,27 +696,32 @@ export const YextBarSocialDiningHeroSection: YextComponentConfig<YextBarSocialDi
           borderRadius: "default",
         },
       },
-      primaryCta: createCta("Call Ahead", {
-        color: {
-          selectedColor: "palette-secondary",
-          contrastingColor: "palette-secondary-contrast",
+      ctas: [
+        {
+          cta: createCta("Call Ahead", {
+            color: {
+              selectedColor: "palette-secondary",
+              contrastingColor: "palette-secondary-contrast",
+            },
+            variant: "primary",
+          }),
         },
-        variant: "primary",
-      }),
-      secondaryCta: createCta("Order Takeout", {
-        color: {
-          selectedColor: "palette-secondary",
-          contrastingColor: "palette-secondary-contrast",
+        {
+          cta: createCta("Order Takeout", {
+            color: {
+              selectedColor: "palette-secondary",
+              contrastingColor: "palette-secondary-contrast",
+            },
+            variant: "primary",
+          }),
         },
-        variant: "primary",
-      }),
-      tertiaryCta: createCta("View Menu", {
-        color: {
-          selectedColor: "[#FFFFFF]",
-          contrastingColor: "[#171219]",
+        {
+          cta: createCta("View Menu", {
+            color: { selectedColor: "[#FFFFFF]", contrastingColor: "[#171219]" },
+            variant: "secondary",
+          }),
         },
-        variant: "secondary",
-      }),
+      ],
     },
     render: (props) => <YextBarSocialDiningHeroSectionComponent {...props} />,
   };
